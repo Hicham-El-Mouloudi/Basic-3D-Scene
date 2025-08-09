@@ -5,8 +5,10 @@ export function initializeOrbitsControls(camera, renderer) {
     const orbitsControls = new OrbitControls(camera, renderer.domElement)
     orbitsControls.enableDamping = true;
     orbitsControls.dampingFactor = 0.05;
-    orbitsControls.minDistance = 10;
+    orbitsControls.minDistance = 1;
     orbitsControls.maxDistance = 100;
-    orbitsControls.maxPolarAngle = Math.PI / 3;
-    orbitsControls.minPolarAngle = Math.PI / 3;
+    orbitsControls.minPolarAngle = Math.PI / 4;
+    orbitsControls.maxPolarAngle = (3 * Math.PI) / 4;
+
+    return orbitsControls;
 }

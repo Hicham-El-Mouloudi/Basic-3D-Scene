@@ -13,8 +13,9 @@ export function initializeScene({mainHTMLElement, backgroundColor, disableOrbita
         const scene = new THREE.Scene();
         // 
         initializeLights(scene, {disableShadows, ambiantLightColor, directionalLightColor});
+        let orbitsControls;
         if(!disableOrbitalControls ?? false) {
-            initializeOrbitsControls(camera, renderer);
+             orbitsControls = initializeOrbitsControls(camera, renderer);
         }
         onResize(renderer, camera, {mainHTMLElement});
         
@@ -33,13 +34,14 @@ export function initializeScene({mainHTMLElement, backgroundColor, disableOrbita
         // Scene
         scene.fog = new THREE.Fog(fogColor?? 0xffffff)
         scene.background = new THREE.Color(backgroundColor?? 0xffffff);
+        // Camera
+        camera.position.set(4, 5, 10);
     
         // adding components
         scene.add(camera);
-        // 
 
         // executing missing code
-        codeClozeFunction({renderer, scene, camera, mainHTMLElement})
+        codeClozeFunction({renderer, scene, camera, mainHTMLElement, orbitsControls})
     } 
     return returnFunction;
 }

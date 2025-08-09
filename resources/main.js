@@ -1,21 +1,25 @@
 import { initializeScene } from "./js/bootstrap.js";
 import { initializeStatsGUI } from "./js/controllers/statistics-controllers.js";
+import { initializeOrbitsControls } from "./js/controls/orbitalControls.js";
 import { createFloor } from "./js/floor.js";
 
 initializeScene({ mainHTMLElement : document.getElementById("mainContainer"),
      disableOrbitalControls : false,
-      disableShadows : false }) (({renderer, scene, camera, mainHTMLElement}) => {
+      disableShadows : false }) (({renderer, scene, camera, mainHTMLElement, orbitsControls}) => {
         // the code cloze
+        // Adding Orbital Controls
+        initializeOrbitsControls(camera, renderer);
         // creating floor
-        let size = {width : 20, height : 20};
-        scene.add(createFloor(size));
+        let size = 10;
+        scene.add(createFloor({size}));
         // Stats
         const statisticsUpdator = initializeStatsGUI({mainHTMLElement})
         // 
         const animate = function() {
+            requestAnimationFrame(animate);
             renderer.render(scene, camera);
             statisticsUpdator();
-            requestAnimationFrame(animate);
+            orbitsControls.update();
         }
         animate();
       })

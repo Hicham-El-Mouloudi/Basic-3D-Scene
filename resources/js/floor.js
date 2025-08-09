@@ -2,14 +2,9 @@ import * as THREE from "three";
 
 export function createFloor({size, color}) {
     // 
-    let height, width;
-    if(size?? false) {
-        width = size.width; height = size.height
-    } else {
-        width = 1000; height = 1000;
-    }
+    let theSize = size?? 1000;
     // creating infinite floor
-    const geo = new THREE.PlaneGeometry(width, height);
+    const geo = new THREE.BoxGeometry(theSize, theSize, 0.5);
     const material = new THREE.MeshStandardMaterial();
     material.roughness = 0.5;
     material.metalness = 0.1;
@@ -18,6 +13,8 @@ export function createFloor({size, color}) {
     const floor = new THREE.Mesh(geo, material);
     // 
     floor.name = "floor";
+    floor.receiveShadow = true;
+    floor.rotation.x = - Math.PI / 2;
     floor.position.y = -5;
     return floor;
 }

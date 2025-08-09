@@ -32,7 +32,7 @@ export function initializeScene({mainHTMLElement, backgroundColor, disableOrbita
             renderer.setSize(window.innerWidth, window.innerHeight);
         }
         // Scene
-        scene.fog = new THREE.Fog(fogColor?? 0xffffff)
+        scene.fog = new THREE.Fog(fogColor?? 0xffffff, 30, 100)
         scene.background = new THREE.Color(backgroundColor?? 0xffffff);
         // Camera
         camera.position.set(4, 5, 10);

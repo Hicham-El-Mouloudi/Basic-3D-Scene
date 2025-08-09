@@ -16,6 +16,8 @@ export function createFloor({size, color}) {
     material.color.set(color?? 0xffffff) ;
 
     const floor = new THREE.Mesh(geo, material);
+    // 
     floor.name = "floor";
+    floor.position.y = -5;
     return floor;
 }

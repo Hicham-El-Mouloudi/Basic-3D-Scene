@@ -25,7 +25,6 @@ export function initializeScene({mainHTMLElement, backgroundColor, disableOrbita
         renderer.outputColorSpace = THREE.SRGBColorSpace;
         if(mainHTMLElement) {
             mainHTMLElement.appendChild(renderer.domElement);
-            mainHTMLElement.appendChild(statistics.domElement);
             renderer.setSize(mainHTMLElement.clientWidth, mainHTMLElement.clientHeight);
         }else { 
             document.body.appendChild(renderer.domElement); 

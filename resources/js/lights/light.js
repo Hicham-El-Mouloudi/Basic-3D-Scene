@@ -6,7 +6,6 @@ export function initializeLights(scene, {disableLightShadows, ambiantLightColor,
     const directionalLight = new THREE.DirectionalLight(directionalLightColor??0xffffff, 5);
     directionalLight.position.set(new THREE.Vector3(-1,-1, 0));
     if (!disableLightShadows ?? false) {
-        ambiantLight.castShadow = true;
         directionalLight.castShadow = true;
     }
     scene.add(ambiantLight);

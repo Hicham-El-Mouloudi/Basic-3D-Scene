@@ -3,6 +3,7 @@ import * as THREE from "three";
 export function initializeLights(scene, {disableLightShadows, ambiantLightColor, directionalLightColor}){
     // 
     const ambiantLight = new THREE.AmbientLight(ambiantLightColor??0x666666);
+    ambiantLight.intensity = 10;
     const directionalLight = new THREE.DirectionalLight(directionalLightColor??0xffffff);
     directionalLight.position.set(5, 12, 8);
 

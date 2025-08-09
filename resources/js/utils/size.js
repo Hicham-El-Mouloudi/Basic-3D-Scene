@@ -1,4 +1,4 @@
-import { randFloatSpread } from "three/src/math/MathUtils.js";
+import { randFloatSpread } from "../three/src/math/MathUtils.js";
 
 
 

@@ -5,13 +5,15 @@ import { randomSize } from "../utils/size.js";
 
 export function addCube({parent, material}) {
     // 
-    let randomColor = randomColor();
-    let randomPosition = randomPosition();
-    let randomSize = randomSize();
-    let geo = new THREE.BoxGeometry(randomSize, randomSize, randomSize);
-    let material = material?? new THREE.MeshStandardMaterial({color : randomColor(), roughness : 0.1, metalness : 0.9});
-    let cube = new THREE.Mesh(geo, material);
-    cube.position.set(randomPosition.x, randomPosition.y, randomPosition.z)
+    let rC = randomColor();
+    let rP = randomPosition();
+    let rS = randomSize();
+    let geo = new THREE.BoxGeometry(rS, rS, rS);
+    let materialAffected = material?? new THREE.MeshStandardMaterial({color : rC, roughness : 0.1, metalness : 0.9});
+    let cube = new THREE.Mesh(geo, materialAffected);
+    cube.position.set(rP.x, rP.y, rP.z)
+    // 
+    parent.add(cube);
 }
 
 export function removeLastAddedCube({parent}) {

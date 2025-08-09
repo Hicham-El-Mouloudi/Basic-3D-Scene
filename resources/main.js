@@ -1,7 +1,9 @@
 import { initializeScene } from "./js/bootstrap.js";
+import { initializeCubeController } from "./js/controllers/cubesControllers.js";
 import { initializeStatsGUI } from "./js/controllers/statistics-controllers.js";
 import { initializeOrbitsControls } from "./js/controls/orbitalControls.js";
 import { createFloor } from "./js/floor.js";
+import {GUI} from "./js/utils/lil-gui.esm.js";
 
 initializeScene({ mainHTMLElement : document.getElementById("mainContainer"),
      disableOrbitalControls : false,
@@ -14,6 +16,9 @@ initializeScene({ mainHTMLElement : document.getElementById("mainContainer"),
         scene.add(createFloor({size}));
         // Stats
         const statisticsUpdator = initializeStatsGUI({mainHTMLElement})
+        // 3D Controls GUI
+        const gui = new GUI({ title : "3D View Settings" })
+        initializeCubeController({gui, scene}); // for cube addition/deletion
         // 
         const animate = function() {
             requestAnimationFrame(animate);

@@ -116,5 +116,36 @@ export function initializeSceneController({gui, scene}) {
         environmentFunctions.untoggle()
     });
 
-
+    // Fog
+    const fogConfigurator = sceneConfigurator.addFolder("Fog");
+    let fogConfiguration = {
+        color : "#ffffff",
+        near : 0.1,
+        far : 300
+    }
+    // 
+    fogConfigurator.addColor(fogConfiguration, "color").onChange((v) => {
+        // 
+        if(scene.fog?? false){
+            scene.fog.color = new THREE.Color(v);
+            return;
+        }
+        scene.fog = new THREE.Fog(new THREE.Color(v), 30, 100);
+    });
+    fogConfigurator.add(fogConfiguration, "near", 0.1, 5, 0.1).onChange((v) => {
+        // 
+        if(scene.fog?? false){
+            scene.fog.near = v;
+            return;
+        }
+        scene.fog = new THREE.Fog(0xffffff, v, 100);
+    });
+    fogConfigurator.add(fogConfiguration, "far", 20, 300, 5).onChange((v) => {
+        // 
+        if(scene.fog?? false){
+            scene.fog.far = v;
+            return;
+        }
+        scene.fog = new THREE.Fog(0xffffff, 30, v);
+    });
 }

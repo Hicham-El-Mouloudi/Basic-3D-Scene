@@ -79,5 +79,42 @@ export function initializeSceneController({gui, scene}) {
         }
     });
 
+    // Overrride matterial
+    let overrideMaterialFunctions = {
+        toggle : function() {
+            scene.overrideMaterial = new THREE.MeshNormalMaterial();
+        },
+        untoggle : function() {
+            scene.overrideMaterial = null;
+        }
+    }
+    let overrideMaterialController = sceneConfigurator.add(sceneConfiguration, "Toggele Override Material");
+    overrideMaterialController.onChange((newValue) => {
+        if(newValue) {
+            overrideMaterialFunctions.toggle();
+            return;
+        }
+        overrideMaterialFunctions.untoggle()
+    });
+
+    
+    // Toggle Environment
+    let environmentFunctions = {
+        toggle : function() {
+            scene.environment = scene.background?? null;
+        },
+        untoggle : function() {
+            scene.environment = null;
+        }
+    }
+    let environmentController = sceneConfigurator.add(sceneConfiguration, "Toggele Environment");
+    environmentController.onChange((newValue) => {
+        if(newValue) {
+            environmentFunctions.toggle();
+            return;
+        }
+        environmentFunctions.untoggle()
+    });
+
 
 }
